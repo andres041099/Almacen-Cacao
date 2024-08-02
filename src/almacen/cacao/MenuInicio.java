@@ -4,6 +4,8 @@
  */
 package almacen.cacao;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andres
@@ -15,6 +17,8 @@ public class MenuInicio extends javax.swing.JFrame {
      */
     public MenuInicio() {
         initComponents();
+        this.setTitle("Iniciar Seccion");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -41,6 +45,11 @@ public class MenuInicio extends javax.swing.JFrame {
         jLabel2.setText("Bienvenido a Almacen Cacao");
 
         jLabel3.setText("Iniciar Seccion");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,6 +88,37 @@ public class MenuInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        iniciarMenuSeccionRegistro();
+    }//GEN-LAST:event_jLabel3MouseClicked
+private void iniciarMenuSeccionRegistro(){
+    String[] opciones = {"Iniciar Sesión", "Registrar Usuario"};
+        int opcion = JOptionPane.showOptionDialog(
+            null,
+            "¿Qué desea hacer?",
+            "Seleccione una opción",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            opciones,
+            opciones[0]
+        );
+
+        if (opcion == 0) {
+            iniciarMenuSeccion();
+        } else if (opcion == 1) {
+            iniciarMenuRegistro();
+        }
+}
+
+private void iniciarMenuSeccion(){
+  IncioSencion iniciar = new IncioSencion();
+  iniciar.setVisible(true);
+}
+private void iniciarMenuRegistro(){
+     RegistroUsuario iniciar = new RegistroUsuario();
+  iniciar.setVisible(true);
+}
     /**
      * @param args the command line arguments
      */

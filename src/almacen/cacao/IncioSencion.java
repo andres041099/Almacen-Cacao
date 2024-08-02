@@ -4,17 +4,22 @@
  */
 package almacen.cacao;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andres
  */
 public class IncioSencion extends javax.swing.JFrame {
-
+ public String archivoRemoto = "src/Base de Datos txt/Registro Usuario.txt";
     /**
      * Creates new form IncioSencion
      */
     public IncioSencion() {
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -29,11 +34,11 @@ public class IncioSencion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
+        jpContrasena = new javax.swing.JPasswordField();
+        rbtnMostrarContrasena = new javax.swing.JRadioButton();
+        btnRegistroSeccion = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,13 +49,27 @@ public class IncioSencion extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
-        jPasswordField1.setText("jPasswordField1");
+        jpContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpContrasenaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("Mostrar Contraseña");
+        rbtnMostrarContrasena.setText("Mostrar Contraseña");
+        rbtnMostrarContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnMostrarContrasenaActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Registrarse");
+        btnRegistroSeccion.setText("Registrarse");
 
-        jButton2.setText("Iniciar Sesion");
+        btnInicio.setText("Iniciar Sesion");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,18 +82,18 @@ public class IncioSencion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jpContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jButton2)
+                        .addComponent(btnInicio)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(btnRegistroSeccion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rbtnMostrarContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,29 +104,114 @@ public class IncioSencion extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jpContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtnMostrarContrasena))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnInicio)
+                    .addComponent(btnRegistroSeccion))
                 .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+CamposValidadores();
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void jpContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpContrasenaActionPerformed
+
+    private void rbtnMostrarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMostrarContrasenaActionPerformed
+       if (rbtnMostrarContrasena.isSelected()) {
+                    jpContrasena.setEchoChar((char) 0); // Muestra la contraseña
+                } else {
+                    jpContrasena.setEchoChar('*'); // Oculta la contraseña
+                }
+    }//GEN-LAST:event_rbtnMostrarContrasenaActionPerformed
+
+    private void validacionInicioUsuario(){
+//        String lineaLectora = null;
+//        boolean existe = false;
+//        boolean entrar = true;
+//        String Usuario = btnInicio.getText();
+//        char[] contrasenaArreglo = jpContrasena.getPassword();
+//        String contrasena = new String(contrasenaArreglo);
+//
+//        try {
+//            FileReader entradalectora = new FileReader(archivoRemoto);
+//            BufferedReader Lector = new BufferedReader(Lector);
+//
+//            while ((lineaLectora = Lector.readLine()) != null) {
+//                String[] palabrasSeparada = lineaLectora.split(" "); // dividir en palabras delimitadas por espacios
+//                if (palabrasSeparada[0].equals(Usuario) && palabrasSeparada[1].equals(contrasenaArreglo)) {
+//                    JOptionPane.showMessageDialog(null, "Gracias por Iniciar. Seccion puede continuar.");
+//                    MenuDeOPciones menu = new MenuDeOPciones();
+//                    menu.setVisible(entrar);
+//                    existe = true;
+//                }
+//            }
+//
+//            if (!existe) {
+//                System.out.println("Usuario o contraseña incorrecto. Por favor intentelo de nuevo");
+//            }
+//        } catch (Exception e) {
+//            e.getCause();
+//        }
+   String lineaLectora = null;
+        boolean existe = false;
+        boolean entrar = true;
+        String Usuario = txtUsuario.getText();
+        char[] contrasenaArreglo = jpContrasena.getPassword();
+        String contrasena = new String(contrasenaArreglo);
+
+        try {
+            FileReader entradalectora = new FileReader(archivoRemoto);
+            BufferedReader lector = new BufferedReader(entradalectora);
+
+            while ((lineaLectora = lector.readLine()) != null) {
+                String[] palabrasSeparada = lineaLectora.split(","); // dividir en palabras delimitadas por espacios
+                if (palabrasSeparada[0].equals(Usuario) && palabrasSeparada[1].equals(contrasena)) {
+                    JOptionPane.showMessageDialog(null, "Gracias por iniciar sesión. Puede continuar.");
+                    MenuDeOPciones menu = new MenuDeOPciones();
+                    menu.setVisible(entrar);
+                    existe = true;
+                    break;
+                }
+            }
+
+            if (!existe) {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos. Por favor inténtelo de nuevo.");
+            }
+
+            lector.close(); // Cerrar el lector después de usarlo
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprimir la traza del error
+        }
+    }
+            private void CamposValidadores(){
+                String Usuario = txtUsuario.getText();
+        char[] contrasenaArreglo = jpContrasena.getPassword();
+        String contrasena = new String(contrasenaArreglo);
+    if (!Usuario.isEmpty() && !contrasena.isEmpty()) {
+        validacionInicioUsuario();
+    } else {
+        JOptionPane.showMessageDialog(null, "El registro no se ha podido completar. por favor llene los campos");
+    }
+}
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introducedentradalectora Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -137,13 +241,13 @@ public class IncioSencion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnRegistroSeccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jpContrasena;
+    private javax.swing.JRadioButton rbtnMostrarContrasena;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

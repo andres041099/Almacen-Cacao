@@ -15,6 +15,8 @@ public class MenuDeOPciones extends javax.swing.JFrame {
      */
     public MenuDeOPciones() {
         initComponents();
+           this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           this.setTitle("Menu de Opciones");
     }
 
     /**
@@ -26,21 +28,96 @@ public class MenuDeOPciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        panelMenu = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblMenuCalculadora = new javax.swing.JLabel();
+        lblMenuInventario = new javax.swing.JLabel();
+        Usuario = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Engravers MT", 1, 48)); // NOI18N
+        jLabel2.setText("Bienvenido a su Menu Cacao");
+
+        lblMenuCalculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calculadora Cacao Icono.png"))); // NOI18N
+        lblMenuCalculadora.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblMenuCalculadora.setAlignmentY(-50.0F);
+        lblMenuCalculadora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMenuCalculadora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblMenuCalculadora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMenuCalculadoraMouseClicked(evt);
+            }
+        });
+
+        lblMenuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Inventario Cacao.png"))); // NOI18N
+        lblMenuInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMenuInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMenuInventarioMouseClicked(evt);
+            }
+        });
+
+        Usuario.setText("Usuario");
+
+        javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
+        panelMenu.setLayout(panelMenuLayout);
+        panelMenuLayout.setHorizontalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(lblMenuCalculadora, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(lblMenuInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1074, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+        );
+        panelMenuLayout.setVerticalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Usuario)
+                .addGap(38, 38, 38)
+                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMenuInventario)
+                    .addComponent(lblMenuCalculadora))
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblMenuCalculadoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuCalculadoraMouseClicked
+       CalculadoraDeCacao menuCalculadora = new CalculadoraDeCacao();
+       menuCalculadora.setVisible(true);
+    }//GEN-LAST:event_lblMenuCalculadoraMouseClicked
+
+    private void lblMenuInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuInventarioMouseClicked
+        Inventario menuInventario = new Inventario();
+        menuInventario.setVisible(true);
+    }//GEN-LAST:event_lblMenuInventarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +155,10 @@ public class MenuDeOPciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Usuario;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblMenuCalculadora;
+    private javax.swing.JLabel lblMenuInventario;
+    private javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
 }

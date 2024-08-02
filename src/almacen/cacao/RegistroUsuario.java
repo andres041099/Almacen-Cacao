@@ -19,6 +19,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
      */
     public RegistroUsuario() {
         initComponents();
+        this.setTitle("Registrarse");
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //        EstadoBoton();
     }
 
@@ -83,6 +85,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
         });
 
         btnInicioAbrir.setText("Iniciar Sesion");
+        btnInicioAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,6 +207,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     txtContrasenaRegistrar.setEchoChar('*'); // Oculta la contraseña
                 }
     }//GEN-LAST:event_rbtMostrarContrasenaActionPerformed
+
+    private void btnInicioAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAbrirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInicioAbrirActionPerformed
 private void GuardarUsuario(){
 
     try(BufferedWriter escribirUsuaario= new BufferedWriter(new FileWriter(archivoRemoto, true))) {
