@@ -1,4 +1,4 @@
-28-06-2024,andres,julio,verde,19,16000,El Total a pagar es: 2240
-34-06-2024,andre,karles,verde,14,16000,El Total a pagar es: 1600
-5-7-2024,Andres,Darwin,verde,14,15000,El Total a pagar es: 1500
-1-8-2024,andres,pablo,verde,25,16000,El Total a pagar es: 2880
+28-06-2024,andres,julio,verde,19,16000,2240
+34-06-2024,andre,karles,verde,14,16000,1600
+5-7-2024,Andres,Darwin,verde,14,15000,1500
+1-8-2024,andres,pablo,verde,25,16000,2880

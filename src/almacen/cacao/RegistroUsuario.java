@@ -20,6 +20,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public RegistroUsuario() {
         initComponents();
         this.setTitle("Registrarse");
+        this.setSize(615, 400);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //        EstadoBoton();
     }
@@ -47,7 +50,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         txtContrasenaRegistrar = new javax.swing.JPasswordField();
         rbtMostrarContrasena = new javax.swing.JRadioButton();
         btnRegistrar = new javax.swing.JButton();
-        btnInicioAbrir = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel2.setText("Nombre de Usuario");
 
@@ -62,83 +65,52 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jButton2.setText("Inicio de Seccion");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 45)); // NOI18N
         jLabel1.setText("Registrate");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(132, 51, 403, 54);
 
+        jLabel4.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Nombre de Usuario");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 170, 220, 20);
+        getContentPane().add(txtUsuarioRegistar);
+        txtUsuarioRegistar.setBounds(220, 170, 239, 22);
 
+        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         jLabel5.setText("Contraseña");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(50, 230, 130, 30);
+        getContentPane().add(txtContrasenaRegistrar);
+        txtContrasenaRegistrar.setBounds(185, 234, 239, 22);
 
+        rbtMostrarContrasena.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         rbtMostrarContrasena.setText("Mostrar Contraseña");
         rbtMostrarContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtMostrarContrasenaActionPerformed(evt);
             }
         });
+        getContentPane().add(rbtMostrarContrasena);
+        rbtMostrarContrasena.setBounds(450, 200, 278, 40);
 
-        btnRegistrar.setText("Registrarse");
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boton Registro.png"))); // NOI18N
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegistrar);
+        btnRegistrar.setBounds(225, 291, 199, 54);
 
-        btnInicioAbrir.setText("Iniciar Sesion");
-        btnInicioAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioAbrirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtUsuarioRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnRegistrar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnInicioAbrir))
-                                    .addComponent(txtContrasenaRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(35, 35, 35)
-                        .addComponent(rbtMostrarContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(62, 62, 62)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtUsuarioRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtContrasenaRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtMostrarContrasena))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar)
-                    .addComponent(btnInicioAbrir))
-                .addGap(41, 41, 41))
-        );
+        jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Portadas/Proyecto fondos de pantalla aplicacion cacao.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 720, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,10 +179,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     txtContrasenaRegistrar.setEchoChar('*'); // Oculta la contraseña
                 }
     }//GEN-LAST:event_rbtMostrarContrasenaActionPerformed
-
-    private void btnInicioAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioAbrirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInicioAbrirActionPerformed
 private void GuardarUsuario(){
 
     try(BufferedWriter escribirUsuaario= new BufferedWriter(new FileWriter(archivoRemoto, true))) {
@@ -383,7 +351,6 @@ private void metodoValidador(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInicioAbrir;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -392,6 +359,7 @@ private void metodoValidador(){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField jTextField1;

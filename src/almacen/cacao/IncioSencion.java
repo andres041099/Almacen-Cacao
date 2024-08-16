@@ -4,6 +4,7 @@
  */
 package almacen.cacao;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
@@ -19,6 +20,10 @@ public class IncioSencion extends javax.swing.JFrame {
      */
     public IncioSencion() {
         initComponents();
+        this.setTitle("Iniciar Seccion");
+        this.setSize(615, 310);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -37,91 +42,68 @@ public class IncioSencion extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         jpContrasena = new javax.swing.JPasswordField();
         rbtnMostrarContrasena = new javax.swing.JRadioButton();
-        btnRegistroSeccion = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 45)); // NOI18N
         jLabel1.setText("Inicia Sesion");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 20, 477, 54);
 
-        jLabel2.setText("Nombre de Usuario");
+        jLabel2.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
+        jLabel2.setText(" Usuario");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(6, 103, 140, 23);
 
+        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         jLabel3.setText("Contraseña");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(6, 147, 140, 30);
+        getContentPane().add(txtUsuario);
+        txtUsuario.setBounds(150, 100, 182, 22);
 
         jpContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpContrasenaActionPerformed(evt);
             }
         });
+        getContentPane().add(jpContrasena);
+        jpContrasena.setBounds(150, 150, 239, 22);
 
+        rbtnMostrarContrasena.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
         rbtnMostrarContrasena.setText("Mostrar Contraseña");
         rbtnMostrarContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnMostrarContrasenaActionPerformed(evt);
             }
         });
+        getContentPane().add(rbtnMostrarContrasena);
+        rbtnMostrarContrasena.setBounds(350, 108, 270, 30);
 
-        btnRegistroSeccion.setText("Registrarse");
-
-        btnInicio.setText("Iniciar Sesion");
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/BotonInicio.png"))); // NOI18N
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInicioActionPerformed(evt);
             }
         });
+        getContentPane().add(btnInicio);
+        btnInicio.setBounds(150, 210, 200, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jpContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(btnInicio)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegistroSeccion)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtnMostrarContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jpContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtnMostrarContrasena))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInicio)
-                    .addComponent(btnRegistroSeccion))
-                .addGap(33, 33, 33))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Portadas/Proyecto fondos de pantalla aplicacion cacao.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 600, 270);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-CamposValidadores();
+
+          CamposValidadores();
+        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void jpContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpContrasenaActionPerformed
@@ -179,10 +161,9 @@ CamposValidadores();
                 String[] palabrasSeparada = lineaLectora.split(","); // dividir en palabras delimitadas por espacios
                 if (palabrasSeparada[0].equals(Usuario) && palabrasSeparada[1].equals(contrasena)) {
                     JOptionPane.showMessageDialog(null, "Gracias por iniciar sesión. Puede continuar.");
-                    MenuDeOPciones menu = new MenuDeOPciones();
+                    MenuDeOPciones menu = new MenuDeOPciones(Usuario);
                     menu.setVisible(entrar);
                     existe = true;
-                    break;
                 }
             }
 
@@ -195,6 +176,38 @@ CamposValidadores();
             e.printStackTrace(); // Imprimir la traza del error
         }
     }
+//    private void validacionInicioUsuario() {
+//    String lineaLectora = null;
+//    boolean existe = false;
+//    String Usuario = txtUsuario.getText();
+//    char[] contrasenaArreglo = jpContrasena.getPassword();
+//    String contrasena = new String(contrasenaArreglo);
+//
+//    try {
+//        FileReader entradalectora = new FileReader(archivoRemoto);
+//        BufferedReader lector = new BufferedReader(entradalectora);
+//
+//        while ((lineaLectora = lector.readLine()) != null) {
+//            String[] palabrasSeparada = lineaLectora.split(","); // dividir en palabras delimitadas por comas
+//            if (palabrasSeparada[0].equals(Usuario) && palabrasSeparada[1].equals(contrasena)) {
+//                JOptionPane.showMessageDialog(null, "Gracias por iniciar sesión. Puede continuar.");
+//                MenuDeOPciones menu = new MenuDeOPciones(Usuario); // Pasar el nombre del usuario al constructor
+//                menu.setVisible(true);
+//                existe = true;
+//                break;
+//            }
+//        }
+//
+//        if (!existe) {
+//            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos. Por favor inténtelo de nuevo.");
+//        }
+//
+//        lector.close(); // Cerrar el lector después de usarlo
+//    } catch (Exception e) {
+//        e.printStackTrace(); // Imprimir la traza del error
+//    }
+//}
+//
             private void CamposValidadores(){
                 String Usuario = txtUsuario.getText();
         char[] contrasenaArreglo = jpContrasena.getPassword();
@@ -242,10 +255,10 @@ CamposValidadores();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnRegistroSeccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField jpContrasena;
     private javax.swing.JRadioButton rbtnMostrarContrasena;
     private javax.swing.JTextField txtUsuario;

@@ -14,8 +14,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class Inventario extends javax.swing.JFrame {
-    public String ArchivoFactura= "src/Base de Datos txt/Almacen Cliente.txt";
+
+    public String ArchivoFactura = "src/Base de Datos txt/Almacen Cliente.txt";
     DefaultTableModel tabla = new DefaultTableModel();
+
     /**
      * Creates new form Inventario
      */
@@ -25,18 +27,20 @@ public class Inventario extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         agregarElemento();
         CargarInventario();
+        actualizarTotales();
     }
-    
+
     public void agregarElemento() {
-        String Elementos [] ={"Fecha", "Vendedor", "Cliente", "Tipo Cacao","Cantidad de Cacao","Pago de Cacao"};
+        String Elementos[] = {"Fecha", "Vendedor", "Cliente", "Tipo Cacao", "Cantidad de Cacao", "Precio a Pagar", "Pago de Cacao"};
         tabla.setColumnIdentifiers(Elementos);
-        tablaInventario.setModel(tabla);   
+        tablaInventario.setModel(tabla);
     }
-    
-     public DefaultTableModel getTabla() {
+
+    public DefaultTableModel getTabla() {
         return tabla;
     }
-     public void CargarInventario(){
+
+    public void CargarInventario() {
 //         try {
 //             FileReader lector = new FileReader(ArchivoFactura);
 //             BufferedReader leer = new BufferedReader(lector);
@@ -55,7 +59,7 @@ public class Inventario extends javax.swing.JFrame {
 //         } catch (Exception e) {
 //             e.printStackTrace();
 //         }
- try {
+        try {
             FileReader lector = new FileReader(ArchivoFactura);
             BufferedReader leer = new BufferedReader(lector);
             String linea;
@@ -64,16 +68,50 @@ public class Inventario extends javax.swing.JFrame {
                 String[] datos = linea.split(",");
                 // Agregar datos a la tabla
                 tabla.addRow(datos);
-            }    
+            }
 
             leer.close();
             lector.close();
-                
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-     }
+    }
+
+    private void actualizarTotales() {
+        int totalCacao = 0;
+        double totalGastado = 0.0;
+
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            // Obtener los valores de la columna "Cantidad de Cacao" (índice 4) y "Pago de Cacao" (índice 5)
+            String cantidadStr = (String) tabla.getValueAt(i, 4);
+            String pagoStr = (String) tabla.getValueAt(i, 6);
+
+            try {
+                // Sumar la cantidad de cacao
+                int cantidad = Integer.parseInt(cantidadStr);
+                totalCacao += cantidad;
+            } catch (NumberFormatException e) {
+                // Manejar el caso cuando la cantidad no es un número válido
+                System.err.println("Formato de cantidad no válido: " + cantidadStr);
+            }
+
+            try {
+                // Sumar el pago de cacao
+                double pago = Double.parseDouble(pagoStr);
+                totalGastado += pago;
+            } catch (NumberFormatException e) {
+                // Manejar el caso cuando el pago no es un número válido
+                System.err.println("Formato de pago no válido: " + pagoStr);
+            }
+        }
+
+        // Actualizar las etiquetas
+        lblTotalCacao.setText("Cantidad Total de Cacao = " + totalCacao);
+        lblTotalGastado.setText("Cantidad Total Gastado = " + totalGastado);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,23 +123,19 @@ public class Inventario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblTotalCacao = new javax.swing.JLabel();
+        lblTotalGastado = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaInventario = new javax.swing.JTable();
-        Usuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 48)); // NOI18N
         jLabel1.setText("Inventario Cacao");
 
-        jLabel2.setText("Cantidad Total de Cacao=");
+        lblTotalCacao.setText("Cantidad Total de Cacao=");
 
-        jLabel3.setText("Cantidad Total Gastado=");
-
-        jLabel4.setText("Cantidad Total Robrante=");
+        lblTotalGastado.setText("Cantidad Total Gastado=");
 
         tablaInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,8 +150,6 @@ public class Inventario extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaInventario);
 
-        Usuario.setText("Usuario");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,37 +157,27 @@ public class Inventario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(270, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(153, 153, 153))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTotalCacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(lblTotalGastado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(Usuario)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblTotalCacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(23, 23, 23))
+                .addComponent(lblTotalGastado)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,13 +234,11 @@ public class Inventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Usuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTotalCacao;
+    private javax.swing.JLabel lblTotalGastado;
     private javax.swing.JTable tablaInventario;
     // End of variables declaration//GEN-END:variables
 }
