@@ -4,8 +4,16 @@
  */
 package almacen.cacao;
 
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 //import javax.swing.JTable;
@@ -16,16 +24,18 @@ import javax.swing.JOptionPane;
  * @author Andres
  */
 public class CalculadoraDeCacao extends javax.swing.JFrame {
-public String Cliente;
-public String tipoCacao;
-public  double cantidadCacao;
-public  double cantidadCacaoBruto;
-public  double precioCacao;
-public  double precioBruto;
-public  double porCentajePrecio= 50;
-public  double porcentajeQuintal= 0.38;
-public  double resultadoCacao;
+
+    public String Cliente;
+    public String tipoCacao;
+    public double cantidadCacao;
+    public double cantidadCacaoBruto;
+    public double precioCacao;
+    public double precioBruto;
+    public double porCentajePrecio = 50;
+    public double porcentajeQuintal = 0.38;
+    public double resultadoCacao;
 //private DefaultTableModel tabla;
+
     /**
      * Creates new form CalculadoraDeCacao
      */
@@ -54,9 +64,7 @@ public  double resultadoCacao;
         lblTotalAPagar = new java.awt.Label();
         txtNombreCliente = new javax.swing.JTextField();
         txtTipoCacao = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
         txtCantidadCacao = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         txtPrecioCacao = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnCalcular = new javax.swing.JButton();
@@ -66,26 +74,35 @@ public  double resultadoCacao;
         lblVendedor = new java.awt.Label();
         txtVendedor = new javax.swing.JTextField();
         btnFactura = new javax.swing.JButton();
-        Usuario = new javax.swing.JLabel();
+        lblPagado = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         label1.setFont(new java.awt.Font("Engravers MT", 0, 48)); // NOI18N
         label1.setText("Calculadora Cacao");
+        jPanel1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, 80));
 
         lblNombreCliente.setText("Nombre del Cliente");
+        jPanel1.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
         lblTipoCacao.setText("Tipo ");
+        jPanel1.add(lblTipoCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
 
         lblCantidadCacao.setText("Cantidad");
+        jPanel1.add(lblCantidadCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
 
         lblPrecioCacao.setText("Precio");
+        jPanel1.add(lblPrecioCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
         lblTotalAPagar.setText("Total a Pagar");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
+        jPanel1.add(lblTotalAPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 332, -1, 60));
+        jPanel1.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 140, -1));
+        jPanel1.add(txtTipoCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 177, -1));
+        jPanel1.add(txtCantidadCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 177, -1));
+        jPanel1.add(txtPrecioCacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 177, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +110,7 @@ public  double resultadoCacao;
                 btnGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 462, -1, -1));
 
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +118,7 @@ public  double resultadoCacao;
                 btnCalcularActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 462, -1, -1));
 
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,10 +126,15 @@ public  double resultadoCacao;
                 btnBorrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 462, -1, -1));
 
         lblFecha.setText("Fecha");
+        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 177, -1));
 
         lblVendedor.setText("Vendedor");
+        jPanel1.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
+        jPanel1.add(txtVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 177, -1));
 
         btnFactura.setText("Facturar");
         btnFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -118,115 +142,13 @@ public  double resultadoCacao;
                 btnFacturaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 462, -1, -1));
 
-        Usuario.setText("Usuario");
+        lblPagado.setText("= 00");
+        jPanel1.add(lblPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 352, 37, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                    .addComponent(txtVendedor))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(180, 180, 180)
-                                .addComponent(lblTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(266, 266, 266)
-                                .addComponent(btnCalcular)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnGuardar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBorrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnFactura))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblTipoCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblCantidadCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblPrecioCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, 0)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtTipoCacao, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                            .addComponent(txtCantidadCacao)
-                                            .addComponent(txtPrecioCacao))))))
-                        .addGap(0, 376, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(129, 129, 129)))
-                        .addGap(1, 1, 1)
-                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(Usuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTipoCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipoCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCantidadCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantidadCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPrecioCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecioCacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(lblTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCalcular)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnBorrar)
-                    .addComponent(btnFactura))
-                .addGap(24, 24, 24))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Portadas/fondosCalculadoraCacao.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1130, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +156,7 @@ public  double resultadoCacao;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +229,7 @@ public  double resultadoCacao;
                             resultadoCacao = cantidadCacao * precioCacao;
                             resultadoRedondiado = Math.round(resultadoCacao);
                             lblTotalAPagar.setForeground(Color.RED);
-                            lblTotalAPagar.setText("El Total a pagar es: " + resultadoRedondiado);
+                            lblPagado.setText(String.valueOf(resultadoRedondiado));
                         }
                     } catch (IllegalArgumentException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -322,25 +244,50 @@ public  double resultadoCacao;
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        boolean camposVaciados = false;
-        if (!txtFecha.getText().isEmpty() && txtVendedor.getText().isEmpty() && txtNombreCliente.getText().isEmpty() && !txtTipoCacao.getText().isEmpty() && !txtCantidadCacao.getText().isEmpty() && !txtPrecioCacao.getText().isEmpty()) {
-            txtFecha.setText(" ");
-            txtVendedor.setText(" ");
-            txtNombreCliente.setText(" ");
-            txtTipoCacao.setText(" ");
-            txtCantidadCacao.setText(" ");
-            txtPrecioCacao.setText(" ");
-            lblTotalAPagar.setText(" ");
-            camposVaciados = true;
-            JOptionPane.showMessageDialog(null, "Se borraron los Campos Exitosamente.");
-        } else if (txtFecha.getText().isEmpty() && txtVendedor.getText().isEmpty() && txtNombreCliente.getText().isEmpty() && txtTipoCacao.getText().isEmpty() && txtCantidadCacao.getText().isEmpty() && txtPrecioCacao.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se Pudieron borrar los Campos porque estan vacio. Cuando esten llenos Podrar dar Clic al Boton Borrar");
+        if (txtFecha.getText().isEmpty() && txtVendedor.getText().isEmpty() && txtNombreCliente.getText().isEmpty() && txtTipoCacao.getText().isEmpty() && txtCantidadCacao.getText().isEmpty() && txtPrecioCacao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Los campos ya están vacíos.");
         } else {
-            JOptionPane.showMessageDialog(null, "No se Pudieron borrar los Campos porque ya lo hizo. Debe llenar los campos antes de borrarlos.");
+            txtFecha.setText("");
+            txtVendedor.setText("");
+            txtNombreCliente.setText("");
+            txtTipoCacao.setText("");
+            txtCantidadCacao.setText("");
+            txtPrecioCacao.setText("");
+            lblPagado.setText("= 00");
+            JOptionPane.showMessageDialog(null, "Campos borrados exitosamente.");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            String rutaArchivo = System.getProperty("user.home") + "/Almacen Cliente.txt";
+            File archivoFactura = new File(rutaArchivo);
+
+            // Crear el archivo si no existe
+            if (!archivoFactura.exists()) {
+                archivoFactura.createNewFile();
+            }
+            FileWriter archivofacrura = new FileWriter(rutaArchivo, true);
+            BufferedWriter escribe = new BufferedWriter(archivofacrura);
+
+            // Obtenemos los textos de cada campo y los combinamos en una sola línea con comas
+            String linea = String.join(",",
+                    txtFecha.getText(),
+                    txtVendedor.getText(),
+                    txtNombreCliente.getText(),
+                    txtTipoCacao.getText(),
+                    txtCantidadCacao.getText(),
+                    txtPrecioCacao.getText(),
+                    lblPagado.getText()
+            );
+
+            // Escribimos la línea en el archivo
+            escribe.write(linea);
+            escribe.newLine(); // Añade una nueva línea después de cada registro
+            escribe.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 //        Cliente= String.valueOf(txtNombreCliente.getText());
 //        tipoCacao= String.valueOf(txtNombreCliente.getText());
 //        cantidadCacao= Double.valueOf(txtCantidadCacao.getText());
@@ -371,37 +318,208 @@ public  double resultadoCacao;
 //             ex.printStackTrace();
 //        }
 
-try {
-    FileWriter archivofacrura = new FileWriter("src/Base de Datos txt/Almacen Cliente.txt",true);
-    BufferedWriter escribe = new BufferedWriter(archivofacrura);
-
-    // Obtenemos los textos de cada campo y los combinamos en una sola línea con comas
-    String linea = String.join(",",
-        txtFecha.getText(),
-        txtVendedor.getText(),
-        txtNombreCliente.getText(),
-        txtTipoCacao.getText(),
-        txtCantidadCacao.getText(),
-        txtPrecioCacao.getText(),
-        lblTotalAPagar.getText()
-    );
-
-    // Escribimos la línea en el archivo
-    escribe.write(linea);
-    escribe.newLine(); // Añade una nueva línea después de cada registro
-
-    escribe.close();
-} catch (Exception ex) {
-    ex.printStackTrace();
-}
-
-
-    
-
+//        try {
+//            FileWriter archivofacrura = new FileWriter("src/Base de Datos txt/Almacen Cliente.txt", true);
+//            BufferedWriter escribe = new BufferedWriter(archivofacrura);
+//
+//            // Obtenemos los textos de cada campo y los combinamos en una sola línea con comas
+//            String linea = String.join(",",
+//                    txtFecha.getText(),
+//                    txtVendedor.getText(),
+//                    txtNombreCliente.getText(),
+//                    txtTipoCacao.getText(),
+//                    txtCantidadCacao.getText(),
+//                    txtPrecioCacao.getText(),
+//                    lblPagado.getText()
+//            );
+//
+//            // Escribimos la línea en el archivo
+//            escribe.write(linea);
+//            escribe.newLine(); // Añade una nueva línea después de cada registro
+//
+//            escribe.close();
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_btnGuardarActionPerformed
+//private void imprimirFactura() {
+//    String recolectar = String.join(",",
+//        "Fecha: " + txtFecha.getText(),
+//        "Vendedor: " + txtVendedor.getText(),
+//        "Cliente: " + txtNombreCliente.getText(),
+//        "Tipo de Cacao: " + txtTipoCacao.getText(),
+//        "Cantidad de Cacao: " + txtCantidadCacao.getText(),
+//        "Precio de Cacao: " + txtPrecioCacao.getText(),
+//        "Total a Pagar: " + lblTotalAPagar.getText()
+//    );
+//
+//    PrinterJob job = PrinterJob.getPrinterJob();
+//    job.setPrintable(new Printable() {
+//        @Override
+//        public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+//            if (page > 0) {
+//                return NO_SUCH_PAGE;
+//            }
+//
+//            Graphics2D g2d = (Graphics2D) g;
+//            g2d.translate(pf.getImageableX(), pf.getImageableY());
+//
+//            // Dibujar el texto en la página
+//            g2d.drawString(recolectar, 100, 100);
+//
+//            return PAGE_EXISTS;
+//        }
+//    });
+//
+//    // Mostrar el diálogo de impresión
+//    boolean doPrint = job.printDialog();
+//    if (doPrint) {
+//        try {
+//            job.print();
+//        } catch (PrinterException ex) {
+//            // Manejar error de impresión
+//            ex.printStackTrace();
+//        }
+//    }
+//}
+
+//    private void imprimirFactura() {
+//    String fecha = "Fecha: " + txtFecha.getText();
+//    String vendedor = "Vendedor: " + txtVendedor.getText();
+//    String cliente = "Cliente: " + txtNombreCliente.getText();
+//    String tipoCacao = "Tipo de Cacao: " + txtTipoCacao.getText();
+//    String cantidadCacao = "Cantidad de Cacao: " + txtCantidadCacao.getText();
+//    String precioCacao = "Precio de Cacao: " + txtPrecioCacao.getText();
+//    String totalPagar = "Total a Pagar: " + lblTotalAPagar.getText();
+//
+//    PrinterJob job = PrinterJob.getPrinterJob();
+//    job.setPrintable(new Printable() {
+//        @Override
+//        public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+//            if (page > 0) {
+//                return NO_SUCH_PAGE;
+//            }
+//
+//            Graphics2D g2d = (Graphics2D) g;
+//            g2d.translate(pf.getImageableX(), pf.getImageableY());
+//
+//            // Fuente para el texto
+//            Font fuenteNormal = new Font("Serif", Font.PLAIN, 12);
+//            g2d.setFont(fuenteNormal);
+//
+//            // Dibujar cabecera
+//            g2d.drawString("FACTURA", 100, 50);
+//
+//            // Dibujar la información
+//            g2d.drawString(fecha, 100, 100);
+//            g2d.drawString(vendedor, 100, 120);
+//            g2d.drawString(cliente, 100, 140);
+//
+//            // Dibujar la tabla
+//            int yTablaInicio = 180;
+//            int y = yTablaInicio;
+//
+//            // Dibujar encabezados de la tabla
+//            g2d.drawString("Descripción", 100, y);
+//            g2d.drawString("Cantidad", 300, y);
+//            g2d.drawString("Precio", 400, y);
+//
+//            y += 20; // Avanzar la posición vertical
+//
+//            // Dibujar los datos de la tabla
+//            g2d.drawString(tipoCacao, 100, y);
+//            g2d.drawString(cantidadCacao, 300, y);
+//            g2d.drawString(precioCacao, 400, y);
+//
+//            y += 40; // Avanzar la posición vertical para el total
+//
+//            // Dibujar el total
+//            g2d.drawString(totalPagar, 100, y);
+//
+//            // Dibujar bordes de la tabla
+//            g2d.drawRect(90, yTablaInicio - 20, 350, 80); // Rectángulo grande alrededor de la tabla
+//            g2d.drawLine(290, yTablaInicio - 20, 290, yTablaInicio + 60); // Línea vertical entre Descripción y Cantidad
+//            g2d.drawLine(390, yTablaInicio - 20, 390, yTablaInicio + 60); // Línea vertical entre Cantidad y Precio
+//            g2d.drawLine(90, yTablaInicio, 440, yTablaInicio); // Línea horizontal bajo los encabezados
+//
+//            return PAGE_EXISTS;
+//        }
+//    });
+//
+//    // Mostrar el diálogo de impresión
+//    boolean doPrint = job.printDialog();
+//    if (doPrint) {
+//        try {
+//            job.print();
+//        } catch (PrinterException ex) {
+//            // Manejar error de impresión
+//            ex.printStackTrace();
+//        }
+//    }
+//}
+    private void imprimirFactura() {
+        // Recopilar los datos para imprimir
+        String[] datos = {
+            "Fecha: " + txtFecha.getText(),
+            "Vendedor: " + txtVendedor.getText(),
+            "Cliente: " + txtNombreCliente.getText(),
+            "Tipo de Cacao: " + txtTipoCacao.getText(),
+            "Cantidad de Cacao: " + txtCantidadCacao.getText(),
+            "Precio de Cacao: " + txtPrecioCacao.getText(),
+            "Total a Pagar: " + lblPagado.getText()
+        };
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable(new Printable() {
+            @Override
+            public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
+                if (page > 0) {
+                    return NO_SUCH_PAGE;
+                }
+
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.translate(pf.getImageableX(), pf.getImageableY());
+
+                // Fuente para el texto
+                Font fuenteNormal = new Font("Serif", Font.PLAIN, 16);
+                g2d.setFont(fuenteNormal);
+
+                // Coordenadas iniciales
+                int x = 100;
+                int y = 100;
+                int lineSpacing = 20;
+
+                // Dibujar título
+                g2d.setFont(new Font("Serif", Font.BOLD, 28));
+                g2d.drawString("FACTURA", x, y);
+                y += lineSpacing * 2; // Espacio después del título
+
+                // Dibujar la información
+                g2d.setFont(fuenteNormal);
+                for (String dato : datos) {
+                    g2d.drawString(dato, x, y);
+                    y += lineSpacing; // Espacio entre líneas de información
+                }
+
+                return PAGE_EXISTS;
+            }
+        });
+
+        // Mostrar el diálogo de impresión
+        boolean doPrint = job.printDialog();
+        if (doPrint) {
+            try {
+                job.print();
+            } catch (PrinterException ex) {
+                // Manejar error de impresión
+                ex.printStackTrace();
+            }
+        }
+    }
+
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+        imprimirFactura();
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     /**
@@ -442,18 +560,17 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Usuario;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private java.awt.Label label1;
     private java.awt.Label lblCantidadCacao;
     private java.awt.Label lblFecha;
     private java.awt.Label lblNombreCliente;
+    private javax.swing.JLabel lblPagado;
     private java.awt.Label lblPrecioCacao;
     private java.awt.Label lblTipoCacao;
     private java.awt.Label lblTotalAPagar;
