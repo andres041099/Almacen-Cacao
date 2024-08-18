@@ -4,21 +4,32 @@
  */
 package almacen.cacao;
 
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Andres
  */
 public class MenuInicio extends javax.swing.JFrame {
-
     /**
      * Creates new form MenuInicio
      */
+//    FondoInicio fondo = new FondoInicio();
     public MenuInicio() {
         initComponents();
-        this.setTitle("Iniciar Seccion");
+        this.setTitle("Menu Inicio");
+        this.setExtendedState(MenuInicio.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setContentPane(fondo);
     }
 
     /**
@@ -31,58 +42,48 @@ public class MenuInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        JPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setFont(new java.awt.Font("Engravers MT", 0, 48)); // NOI18N
+        JPanel.setFont(new java.awt.Font("Engravers MT", 0, 48)); // NOI18N
+        JPanel.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 1, 48)); // NOI18N
         jLabel2.setText("Bienvenido a Almacen Cacao");
+        JPanel.add(jLabel2);
+        jLabel2.setBounds(160, 30, 1045, 58);
 
-        jLabel3.setText("Iniciar Seccion");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ProyectofondosBoton.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
+        JPanel.add(jLabel3);
+        jLabel3.setBounds(435, 137, 607, 208);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(364, 364, 364)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Portadas/portadacacao.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        JPanel.add(jLabel4);
+        jLabel4.setBounds(0, 0, 1460, 720);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1208, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,12 +113,24 @@ private void iniciarMenuSeccionRegistro(){
 }
 
 private void iniciarMenuSeccion(){
-  IncioSencion iniciar = new IncioSencion();
-  iniciar.setVisible(true);
+//  IncioSencion iniciar = new IncioSencion();
+//  iniciar.setVisible(true);
+  try {
+        IncioSencion iniciar = new IncioSencion();
+        iniciar.setVisible(true);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al abrir la ventana de Iniciar Sesión: " + e.getMessage());
+    }
 }
 private void iniciarMenuRegistro(){
-     RegistroUsuario iniciar = new RegistroUsuario();
-  iniciar.setVisible(true);
+//     RegistroUsuario iniciar = new RegistroUsuario();
+//  iniciar.setVisible(true);
+try {
+        RegistroUsuario iniciar = new RegistroUsuario();
+        iniciar.setVisible(true);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al abrir la ventana de Registro de Usuario: " + e.getMessage());
+    }
 }
     /**
      * @param args the command line arguments
@@ -155,9 +168,33 @@ private void iniciarMenuRegistro(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+//class FondoInicio extends JPanel {
+//        Image imagen;
+////        @Override
+////        public void paint(Graphics g) {
+////            try {
+////                imagen = new ImageIcon(getClass().getResource("/Portadas/portadacacao.png")).getImage();
+////                g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+////                setOpaque(false);
+////            } catch (Exception e) {
+////                System.out.println("No se pudo cargar la imagen: " + e.getMessage());
+////            }
+////            super.paint(g);
+////        }
+//
+//        @Override
+//        protected void paintComponent(Graphics g) {
+//            super.paintComponent(g);
+//            imagen = new ImageIcon(getClass().getResource("/Portadas/portadacacao.png")).getImage();
+//            g.drawImage(imagen, 0, 0, this.getWidth(), this.getHeight(), MenuInicio.this);
+//              setOpaque(false);
+//        }
+//
+//    }  
 }
